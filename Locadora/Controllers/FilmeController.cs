@@ -19,14 +19,21 @@ namespace Locadora.Controllers
             _context = context;
         }
 
-        // GET: Filme
+        /// <summary>
+        /// Lista todos os filmes
+        /// </summary>
+        /// <returns>Retorna uma view com todos os filmes</returns>
         public async Task<IActionResult> Index()
         {
             var locadoraContext = _context.Filme.Include(f => f.Genero);
             return View(await locadoraContext.ToListAsync());
         }
 
-        // GET: Filme/Details/5
+        /// <summary>
+        /// Mostra os detalhes do filme
+        /// </summary>
+        /// <param name="id">Id do filme para ver os detalhes</param>
+        /// <returns>Retorna uma view com o filmes</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,16 +52,21 @@ namespace Locadora.Controllers
             return View(filme);
         }
 
-        // GET: Filme/Create
+        /// <summary>
+        /// Retorna a pagina de criação dos filmes
+        /// </summary>
+        /// <returns>Retorna a view de criação dos filmes</returns>
         public IActionResult Create()
         {
             ViewData["GeneroId"] = new SelectList(_context.Genero, "GeneroId", "Nome");
             return View();
         }
 
-        // POST: Filme/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+         /// <summary>
+         /// Recebe o novo filme para ser persistido.
+         /// </summary>
+         /// <param name="filme">Detalhes do filme que vai ser criado </param>
+         /// <returns>Retorna para a index</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FilmeId,Nome,DataCriacao,Ativo,GeneroId")] Filme filme)
@@ -69,7 +81,11 @@ namespace Locadora.Controllers
             return View(filme);
         }
 
-        // GET: Filme/Edit/5
+        /// <summary>
+        /// Retorna os dados para serem editados
+        /// </summary>
+        /// <param name="id">Id do filme para ser editado</param>
+        /// <returns>Retorna uma view com o filme a ser editado</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,9 +102,12 @@ namespace Locadora.Controllers
             return View(filme);
         }
 
-        // POST: Filme/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// Edita o filme
+        /// </summary>
+        /// <param name="id">O id do filme que vai ser editado</param>
+        /// <returns>Retorna para a index </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("FilmeId,Nome,DataCriacao,Ativo,GeneroId")] Filme filme)
@@ -122,7 +141,11 @@ namespace Locadora.Controllers
             return View(filme);
         }
 
-        // GET: Filme/Delete/5
+        /// <summary>
+        /// Retorna os dados para serem excluidos
+        /// </summary>
+        /// <param name="id">Id do filme para ser excluido</param>
+        /// <returns>Retorna uma view com o filme a ser excluido</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +164,11 @@ namespace Locadora.Controllers
             return View(filme);
         }
 
-        // POST: Filme/Delete/5
+        /// <summary>
+        /// Exclui o filme
+        /// </summary>
+        /// <param name="id">O id do filme que vai ser excluido</param>
+        /// <returns>Retorna para a index </returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
