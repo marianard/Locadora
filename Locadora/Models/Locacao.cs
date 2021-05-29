@@ -22,10 +22,12 @@ namespace Locadora.Models
         /// </summary>
         [Required]
         [MaxLength(14)]
-        [Display(Name = "Cpf Cliente")]
+        [Display(Name = "CPF Cliente")]
         public string CpfCliente { get; set; }
         [Display(Name = "Data Locação")]
         public DateTime DataLocacao { get; set; }
+        [Display(Name = "Filme")]
+        public int FilmeId { get; set; }
         [Required]
         public List<Filme> ListaFilme {get;set;}
     }

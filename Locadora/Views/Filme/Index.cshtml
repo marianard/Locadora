@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<Locadora.Models.Filme>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Filme";
 }
 
-<h1>Index</h1>
+<h2>Filme</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Cadastrar Filme</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
@@ -28,8 +31,12 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                @Html.CheckBox("teste", new {value = item.FilmeId, @checked = false })
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
@@ -43,11 +50,11 @@
                 @Html.DisplayFor(modelItem => item.Genero.Nome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.FilmeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FilmeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FilmeId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.FilmeId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.FilmeId">Detalhar</a> |
+                <a asp-action="Delete" asp-route-id="@item.FilmeId">Deletar</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

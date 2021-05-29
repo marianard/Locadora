@@ -19,13 +19,20 @@ namespace Locadora.Controllers
             _context = context;
         }
 
-        // GET: Genero
+        /// <summary>
+        /// Lista todos os generos
+        /// </summary>
+        /// <returns>Retorna uma view com todos os generos</returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Genero.ToListAsync());
         }
 
-        // GET: Genero/Details/5
+        /// <summary>
+        /// Mostra os detalhes do genero
+        /// </summary>
+        /// <param name="id">Id do genero para ver os detalhes</param>
+        /// <returns>Retorna uma view com o genero</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,15 +50,21 @@ namespace Locadora.Controllers
             return View(genero);
         }
 
-        // GET: Genero/Create
+        /// <summary>
+        /// Retorna a pagina de criação do genero
+        /// </summary>
+        /// <returns>Retorna a view de criação do genero</returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Genero/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// Recebe o novo genero para ser persistido.
+        /// </summary>
+        /// <param name="genero">Detalhes do genero que vai ser criado </param>
+        /// <returns>Retorna para a index</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("GeneroId,Nome,DataCriacao,Ativo")] Genero genero)
@@ -65,7 +78,11 @@ namespace Locadora.Controllers
             return View(genero);
         }
 
-        // GET: Genero/Edit/5
+        /// <summary>
+        /// Retorna os dados para serem editados
+        /// </summary>
+        /// <param name="id">Id do genero para ser editado</param>
+        /// <returns>Retorna uma view com o genero a ser editado</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +98,11 @@ namespace Locadora.Controllers
             return View(genero);
         }
 
-        // POST: Genero/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita o genero
+        /// </summary>
+        /// <param name="id">O id do genero que vai ser editado</param>
+        /// <returns>Retorna para a index </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("GeneroId,Nome,DataCriacao,Ativo")] Genero genero)
@@ -116,7 +135,11 @@ namespace Locadora.Controllers
             return View(genero);
         }
 
-        // GET: Genero/Delete/5
+        /// <summary>
+        /// Retorna os dados para serem excluidos
+        /// </summary>
+        /// <param name="id">Id do genero para ser excluido</param>
+        /// <returns>Retorna uma view com o genero a ser excluido</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +157,11 @@ namespace Locadora.Controllers
             return View(genero);
         }
 
-        // POST: Genero/Delete/5
+        /// <summary>
+        /// Exclui o genero
+        /// </summary>
+        /// <param name="id">O id do genero que vai ser excluido</param>
+        /// <returns>Retorna para a index </returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

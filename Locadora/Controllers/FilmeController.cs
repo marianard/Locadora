@@ -33,7 +33,7 @@ namespace Locadora.Controllers
         /// Mostra os detalhes do filme
         /// </summary>
         /// <param name="id">Id do filme para ver os detalhes</param>
-        /// <returns>Retorna uma view com o filmes</returns>
+        /// <returns>Retorna uma view com o filme</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -53,9 +53,9 @@ namespace Locadora.Controllers
         }
 
         /// <summary>
-        /// Retorna a pagina de criação dos filmes
+        /// Retorna a pagina de criação do filme
         /// </summary>
-        /// <returns>Retorna a view de criação dos filmes</returns>
+        /// <returns>Retorna a view de criação do filme</returns>
         public IActionResult Create()
         {
             ViewData["GeneroId"] = new SelectList(_context.Genero, "GeneroId", "Nome");

@@ -19,13 +19,20 @@ namespace Locadora.Controllers
             _context = context;
         }
 
-        // GET: Locacao
+        /// <summary>
+        /// Lista todos as locações
+        /// </summary>
+        /// <returns>Retorna uma view com todas as locações</returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Locacao.ToListAsync());
         }
 
-        // GET: Locacao/Details/5
+        /// <summary>
+        /// Mostra os detalhes das locações
+        /// </summary>
+        /// <param name="id">Id da locação para ver os detalhes</param>
+        /// <returns>Retorna uma view com a locação</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,15 +57,21 @@ namespace Locadora.Controllers
             return View(locacao);
         }
 
-        // GET: Locacao/Create
+        /// <summary>
+        /// Retorna a pagina de criação das locação
+        /// </summary>
+        /// <returns>Retorna a view de criação da locação</returns>
         public IActionResult Create()
         {
+            ViewData["FilmeId"] = new SelectList(_context.Filme, "FilmeId", "Nome");
             return View();
         }
 
-        // POST: Locacao/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Recebe a nova locação para ser persistida.
+        /// </summary>
+        /// <param name="locacao">Detalhes da locação que vai ser criada</param>
+        /// <returns>Retorna para a index</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LocacaoId,CpfCliente,DataLocacao")] Locacao locacao)
@@ -69,10 +82,16 @@ namespace Locadora.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+           
+
             return View(locacao);
         }
 
-        // GET: Locacao/Edit/5
+        /// <summary>
+        /// Retorna os dados para serem editados
+        /// </summary>
+        /// <param name="id">Id da locação a ser editada</param>
+        /// <returns>Retorna uma view com a locação a ser editada</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,9 +115,11 @@ namespace Locadora.Controllers
             return View(locacao);
         }
 
-        // POST: Locacao/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita a locação
+        /// </summary>
+        /// <param name="id">O id da locação a ser editada</param>
+        /// <returns>Retorna para a index </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("LocacaoId,CpfCliente,DataLocacao")] Locacao locacao)
@@ -131,7 +152,11 @@ namespace Locadora.Controllers
             return View(locacao);
         }
 
-        // GET: Locacao/Delete/5
+        /// <summary>
+        /// Retorna os dados para serem excluidos
+        /// </summary>
+        /// <param name="id">Id da locação para ser excluido</param>
+        /// <returns>Retorna uma view com a locação a ser excluida</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,7 +174,11 @@ namespace Locadora.Controllers
             return View(locacao);
         }
 
-        // POST: Locacao/Delete/5
+        /// <summary>
+        /// Exclui a locação
+        /// </summary>
+        /// <param name="id">O id da locação que vai ser excluida</param>
+        /// <returns>Retorna para a index </returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

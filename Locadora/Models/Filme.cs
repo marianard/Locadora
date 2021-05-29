@@ -22,7 +22,9 @@ namespace Locadora.Models
         [Display (Name = "Data Criação")]
         public DateTime DataCriacao { get; set; }
         public bool Ativo { get; set; }
+        [Display(Name = "Gênero")]
         public int GeneroId { get; set; }
+        
         public virtual Genero Genero { get; set; }
         public List<Locacao> ListaLocacao { get; set; }
     }

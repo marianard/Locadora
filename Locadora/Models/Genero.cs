@@ -19,6 +19,7 @@ namespace Locadora.Models
         [Required]
         [MaxLength(100)]
         public string Nome { get; set; }
+        [Display(Name = "Data Criação")]
         public DateTime DataCriacao { get; set; }
         public bool Ativo { get; set; }
     }
